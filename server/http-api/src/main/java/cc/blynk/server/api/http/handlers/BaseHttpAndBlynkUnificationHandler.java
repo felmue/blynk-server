@@ -44,7 +44,9 @@ public abstract class BaseHttpAndBlynkUnificationHandler extends ByteToMessageDe
     }
 
     private static boolean isHardwarePipeline(long header4Bytes, short lastByteOfHeader) {
-        return lastByteOfHeader == 32 && (header4Bytes == 486539520L || header4Bytes == 33554688L);
+/* --fm - support shorter auth token (i.e. mac address) */
+        return (lastByteOfHeader == 32 || lastByteOfHeader == 17)
+               && (header4Bytes == 486539520L || header4Bytes == 33554688L);
     }
 
     /**
