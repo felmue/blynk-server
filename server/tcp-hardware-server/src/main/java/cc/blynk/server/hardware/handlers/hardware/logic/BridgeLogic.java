@@ -67,7 +67,8 @@ public class BridgeLogic {
                 sendToMap = new HashMap<>();
             }
 
-            if (sendToMap.size() > 100 || token.length() != 32) {
+/* --fm - support shorter auth token (i.e. mac address) */
+            if (sendToMap.size() > 100 || ((token.length() != 32) && (token.length() != 17))) {
                 ctx.writeAndFlush(notAllowed(message.id), ctx.voidPromise());
                 return;
             }
